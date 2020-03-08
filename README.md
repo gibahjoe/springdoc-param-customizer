@@ -11,6 +11,24 @@ It is also very customizable and supports any annotation (ships with @QuerydslPr
 
 [license](https://github.com/gibahjoe/springdoc-param-customizer/blob/master/LICENSE).
 
+## Installation
+
+Add to your build.gradle
+
+```groovy
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+```groovy
+dependencies {
+	  implementation 'com.github.gibahjoe:springdoc-param-customizer:[version]'
+}
+```
+
 ## Usage
 
 Create a bean of type AnnotatedParameterCustomizer and add your parameter customizer. See example below using querydsl customizer
