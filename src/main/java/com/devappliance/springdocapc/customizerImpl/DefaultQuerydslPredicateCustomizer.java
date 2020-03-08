@@ -31,10 +31,10 @@ import java.util.stream.Collectors;
  * Email: gibahjoe@gmail.com
  * Mar, 2020
  **/
-public class QuerydslPredicateCustomizer implements AnnotationCustomizer<QuerydslPredicate> {
+public class DefaultQuerydslPredicateCustomizer implements AnnotationCustomizer<QuerydslPredicate> {
     private QuerydslBindingsFactory querydslBindingsFactory;
 
-    public QuerydslPredicateCustomizer(QuerydslBindingsFactory querydslBindingsFactory) {
+    public DefaultQuerydslPredicateCustomizer(QuerydslBindingsFactory querydslBindingsFactory) {
         this.querydslBindingsFactory = querydslBindingsFactory;
     }
 
