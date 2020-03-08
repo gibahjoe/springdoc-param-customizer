@@ -1,3 +1,6 @@
+
+[![](https://jitpack.io/v/gibahjoe/springdoc-param-customizer.svg)](https://jitpack.io/#gibahjoe/springdoc-param-customizer)
+
 # Introduction
 
 This is a simple library that is an extension of the [Springdoc-Openapi library](https://springdoc.org/)
