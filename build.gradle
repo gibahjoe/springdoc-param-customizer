@@ -15,7 +15,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-common
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-common', version: '1.2.33'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-common', version: '1.2.32'
     // https://mvnrepository.com/artifact/org.javassist/javassist
     implementation group: 'org.javassist', name: 'javassist', version: '3.26.0-GA'
 
