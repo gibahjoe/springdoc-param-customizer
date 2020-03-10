@@ -35,23 +35,33 @@ Create a bean of type AnnotatedParameterCustomizer and add your parameter custom
 
 ```java
 
-    import com.devappliance.springdocapc.AnnotatedParameterCustomizer;
-    import com.devappliance.springdocapc.customizerImpl.DefaultQuerydslPredicateCustomizer;
+    import com.devappliance.springdocparamcustomizer.AnnotatedParameterCustomizer;
+    import com.devappliance.springdocparamcustomizer.customizerImpl.DefaultQuerydslPredicateCustomizer;
 
     @Configuration
     public class WebConfiguration implements WebMvcConfigurer {
     //some code
     
     @Bean
-    public AnnotatedParameterCustomizer customParamCustomiser(QuerydslBindingsFactory querydslBindingsFactory) {
-        return new AnnotatedParameterCustomizer()
-                .addCustomizer(new DefaultQuerydslPredicateCustomizer(querydslBindingsFactory));
-    }
+   public AnnotatedParameterCustomizer annotatedParameterCustomizer(Optional<OpenAPI> openAPI, ObjectProvider<EntityPathResolver> resolver) {
+           return new AnnotatedParameterCustomizer(openAPI)
+                   .addCustomizer(new DefaultQuerydslPredicateCustomizer(new QuerydslBindingsFactory(resolver.getIfAvailable(() -> SimpleEntityPathResolver.INSTANCE))));
+   }
 
     //other code    
     }
 
 ```
+
+## or
+
+Import the soring configuration to use the default config
+
+```java
+@Import(AnnotatedParameterConfig.class)
+public class Config{}
+```
+
 
 The above example uses the inbuilt _DefaultQuerydslPredicateCustomizer_ which displays QueryDslPredicate parameters properly in OpenApi document
 
