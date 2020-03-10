@@ -17,15 +17,15 @@ Add to your build.gradle
 
 ```groovy
 allprojects {
-	repositories {
-		maven { url 'https://jitpack.io' }
+    repositories {
+	    maven { url 'https://jitpack.io' }
 	}
 }
 ```
 
 ```groovy
 dependencies {
-	  implementation 'com.github.gibahjoe:springdoc-param-customizer:[version]'
+    implementation 'com.github.gibahjoe:springdoc-param-customizer:[version]'
 }
 ```
 
@@ -35,33 +35,29 @@ Create a bean of type AnnotatedParameterCustomizer and add your parameter custom
 
 ```java
 
-    import com.devappliance.springdocparamcustomizer.AnnotatedParameterCustomizer;
-    import com.devappliance.springdocparamcustomizer.customizerImpl.DefaultQuerydslPredicateCustomizer;
+import com.devappliance.springdocparamcustomizer.AnnotatedParameterCustomizer;
+import com.devappliance.springdocparamcustomizer.customizerImpl.DefaultQuerydslPredicateCustomizer;
 
-    @Configuration
-    public class WebConfiguration implements WebMvcConfigurer {
-    //some code
+@Configuration
+public class WebConfiguration implements WebMvcConfigurer {
+    //some config
     
     @Bean
    public AnnotatedParameterCustomizer annotatedParameterCustomizer(Optional<OpenAPI> openAPI, ObjectProvider<EntityPathResolver> resolver) {
-           return new AnnotatedParameterCustomizer(openAPI)
+       return new AnnotatedParameterCustomizer(openAPI)
                    .addCustomizer(new DefaultQuerydslPredicateCustomizer(new QuerydslBindingsFactory(resolver.getIfAvailable(() -> SimpleEntityPathResolver.INSTANCE))));
    }
 
-    //other code    
+    //Ensure to include a bean of your open api too in your config
+    @Bean
+    public OpenAPI openApi() {
+        return new OpenAPI();
     }
 
+    //other config    
+}
+
 ```
-
-## or
-
-Import the soring configuration to use the default config
-
-```java
-@Import(AnnotatedParameterConfig.class)
-public class Config{}
-```
-
 
 The above example uses the inbuilt _DefaultQuerydslPredicateCustomizer_ which displays QueryDslPredicate parameters properly in OpenApi document
 
