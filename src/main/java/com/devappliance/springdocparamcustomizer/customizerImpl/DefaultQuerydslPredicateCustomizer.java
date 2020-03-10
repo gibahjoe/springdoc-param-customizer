@@ -2,15 +2,16 @@ package com.devappliance.springdocparamcustomizer.customizerImpl;
 
 import com.devappliance.springdocparamcustomizer.AnnotatedParameterCustomizer;
 import com.devappliance.springdocparamcustomizer.customizer.AnnotationCustomizer;
+import io.swagger.v3.core.converter.AnnotatedType;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.core.converter.ResolvedSchema;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
-import org.springdoc.core.SpringDocAnnotationsUtils;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.QuerydslBindingsFactory;
@@ -22,6 +23,7 @@ import org.springframework.web.method.HandlerMethod;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,6 +50,30 @@ public class DefaultQuerydslPredicateCustomizer implements AnnotationCustomizer<
             e.printStackTrace();
         }
         return Collections.emptySet();
+    }
+
+    public static Schema extractSchema(Components components, Type returnType) {
+        Schema schemaN = null;
+        ResolvedSchema resolvedSchema = ModelConverters.getInstance()
+                .resolveAsResolvedSchema(
+                        new AnnotatedType(returnType).resolveAsRef(true));
+        if (resolvedSchema.schema != null) {
+            schemaN = resolvedSchema.schema;
+            Map<String, Schema> schemaMap = resolvedSchema.referencedSchemas;
+            if (schemaMap != null) {
+                for (Map.Entry<String, Schema> entry : schemaMap.entrySet()) {
+                    Map<String, Schema> componentSchemas = components.getSchemas();
+                    if (componentSchemas == null) {
+                        componentSchemas = new LinkedHashMap<>();
+                        componentSchemas.put(entry.getKey(), entry.getValue());
+                    } else if (!componentSchemas.containsKey(entry.getKey())) {
+                        componentSchemas.put(entry.getKey(), entry.getValue());
+                    }
+                    components.setSchemas(componentSchemas);
+                }
+            }
+        }
+        return schemaN;
     }
 
     @Override
@@ -115,7 +141,7 @@ public class DefaultQuerydslPredicateCustomizer implements AnnotationCustomizer<
         parameterModel.setRequired(false);
         Schema schema;
         if (context.getOpenAPI().isPresent()) {
-            schema = SpringDocAnnotationsUtils.resolveSchemaFromType(tClass, context.getOpenAPI().get().getComponents(), null);
+            schema = resolveSchemaFromType(tClass, context.getOpenAPI().get().getComponents());
         } else {
             ResolvedSchema resolvedSchema = ModelConverters.getInstance().readAllAsResolvedSchema(tClass);
             schema = resolvedSchema.schema;
@@ -123,6 +149,10 @@ public class DefaultQuerydslPredicateCustomizer implements AnnotationCustomizer<
         parameterModel.setSchema(schema);
         parameterModel.setName("filterPredicate");
         return AnnotatedParameterCustomizer.next(parameterModel, parameter, context, handlerMethod, chain);
+    }
+
+    private Schema resolveSchemaFromType(Class<?> tClass, Components components) {
+        return extractSchema(components, tClass);
     }
 
     @Override
