@@ -1,4 +1,4 @@
-package com.devappliance.springdocparamcustomixer.qdslpredicatecustomizer;
+package com.devappliance.springdocparamcustomizer.qdslpredicatecustomizer;
 
 /**
  * @author Gibah Joseph

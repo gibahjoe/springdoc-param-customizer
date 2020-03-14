@@ -1,4 +1,4 @@
-package com.devappliance.springdocparamcustomixer.qdslpredicatecustomizer;
+package com.devappliance.springdocparamcustomizer.qdslpredicatecustomizer;
 
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.PathMetadata;

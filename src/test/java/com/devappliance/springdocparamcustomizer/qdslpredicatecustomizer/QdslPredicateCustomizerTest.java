@@ -1,7 +1,7 @@
-package com.devappliance.springdocparamcustomixer.qdslpredicatecustomizer;
+package com.devappliance.springdocparamcustomizer.qdslpredicatecustomizer;
 
-import com.devappliance.springdocparamcustomixer.BaseTest;
 import com.devappliance.springdocparamcustomizer.AnnotatedParameterCustomizer;
+import com.devappliance.springdocparamcustomizer.BaseTest;
 import com.devappliance.springdocparamcustomizer.customizerImpl.DefaultQuerydslPredicateCustomizer;
 import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -40,7 +40,7 @@ public class QdslPredicateCustomizerTest extends BaseTest {
                 .andExpect(jsonPath("$.openapi", is("3.0.1")))
                 .andExpect(jsonPath("$.paths./test.get.parameters[0].schema.$ref")
                         .value("#/components/schemas/DummyEntityPredicateG"))
-                .andExpect(jsonPath("$.components.schemas.DummyEntityPredicateG.properties.notxCode").exists());
+                .andExpect(jsonPath("$.components.schemas.DummyEntityPredicateG.properties.notCode").exists());
     }
 
     @SpringBootApplication

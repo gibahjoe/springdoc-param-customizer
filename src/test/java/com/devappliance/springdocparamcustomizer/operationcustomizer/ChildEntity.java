@@ -1,4 +1,4 @@
-package com.devappliance.springdocparamcustomixer.operationcustomizer;
+package com.devappliance.springdocparamcustomizer.operationcustomizer;
 
 /**
  * @author Gibah Joseph

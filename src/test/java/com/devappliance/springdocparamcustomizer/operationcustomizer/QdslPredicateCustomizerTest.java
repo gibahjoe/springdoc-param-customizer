@@ -1,6 +1,6 @@
-package com.devappliance.springdocparamcustomixer.operationcustomizer;
+package com.devappliance.springdocparamcustomizer.operationcustomizer;
 
-import com.devappliance.springdocparamcustomixer.BaseTest;
+import com.devappliance.springdocparamcustomizer.BaseTest;
 import com.devappliance.springdocparamcustomizer.QuerydslPredicateOperationCustomizer;
 import com.querydsl.core.types.Predicate;
 import org.junit.jupiter.api.Test;
