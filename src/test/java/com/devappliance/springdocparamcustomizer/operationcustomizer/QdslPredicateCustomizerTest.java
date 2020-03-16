@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springdoc.core.Constants;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.QuerydslBindingsFactory;
@@ -55,8 +56,8 @@ public class QdslPredicateCustomizerTest extends BaseTest {
         }
 
         @Bean
-        public QuerydslPredicateOperationCustomizer querydslPredicateOperationCustomizer(QuerydslBindingsFactory querydslBindingsFactory) {
-            return new QuerydslPredicateOperationCustomizer(querydslBindingsFactory);
+        public QuerydslPredicateOperationCustomizer querydslPredicateOperationCustomizer(QuerydslBindingsFactory querydslBindingsFactory, LocalVariableTableParameterNameDiscoverer localVariableTableParameterNameDiscoverer) {
+            return new QuerydslPredicateOperationCustomizer(querydslBindingsFactory, localVariableTableParameterNameDiscoverer);
         }
 
 
