@@ -1,5 +1,6 @@
 
 ![CircleCI](https://img.shields.io/circleci/build/github/gibahjoe/springdoc-param-customizer/master)
+![Codecov](https://img.shields.io/codecov/c/github/gibahjoe/springdoc-param-customizer)
 [![](https://jitpack.io/v/gibahjoe/springdoc-param-customizer.svg)](https://jitpack.io/#gibahjoe/springdoc-param-customizer)
 
 # Introduction
