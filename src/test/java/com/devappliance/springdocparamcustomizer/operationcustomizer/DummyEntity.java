@@ -10,24 +10,24 @@ import java.util.List;
 public class DummyEntity {
     private String name;
     private String code;
-    private QdslPredicateCustomizerTest.Status status;
+    private QdslPredicateOperationCustomizerTest.Status status;
     private ChildEntity child;
-    private List<QdslPredicateCustomizerTest.Status> notStatuses;
+    private List<QdslPredicateOperationCustomizerTest.Status> notStatuses;
 
-    public List<QdslPredicateCustomizerTest.Status> getNotStatuses() {
+    public List<QdslPredicateOperationCustomizerTest.Status> getNotStatuses() {
         return notStatuses;
     }
 
-    public DummyEntity setNotStatuses(List<QdslPredicateCustomizerTest.Status> notStatuses) {
+    public DummyEntity setNotStatuses(List<QdslPredicateOperationCustomizerTest.Status> notStatuses) {
         this.notStatuses = notStatuses;
         return this;
     }
 
-    public QdslPredicateCustomizerTest.Status getStatus() {
+    public QdslPredicateOperationCustomizerTest.Status getStatus() {
         return status;
     }
 
-    public DummyEntity setStatus(QdslPredicateCustomizerTest.Status status) {
+    public DummyEntity setStatus(QdslPredicateOperationCustomizerTest.Status status) {
         this.status = status;
         return this;
     }

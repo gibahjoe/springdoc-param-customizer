@@ -18,7 +18,7 @@ public class QDummyEntity extends EntityPathBase<DummyEntity> {
     public static final QDummyEntity dummyEntity = new QDummyEntity("dummyEntity");
     private static final long serialVersionUID = -1184258693L;
     public final StringPath code = createString("code");
-    public final EnumPath<QdslPredicateCustomizerTest.Status> status = createEnum("status", QdslPredicateCustomizerTest.Status.class);
+    public final EnumPath<QdslPredicateOperationCustomizerTest.Status> status = createEnum("status", QdslPredicateOperationCustomizerTest.Status.class);
 
     public final StringPath name = createString("name");
 

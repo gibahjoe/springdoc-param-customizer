@@ -75,7 +75,7 @@ public class QuerydslPredicateOperationCustomizer implements OperationCustomizer
 
             QuerydslBindings bindings = extractQdslBindings(predicate);
 
-            Set<String> fieldsToAdd = Arrays.stream(predicate.root().getDeclaredFields()).map(Field::getName).collect(Collectors.toSet());
+            Set<String> fieldsToAdd = Arrays.stream(predicate.root().getDeclaredFields()).filter(field -> !field.isSynthetic()).map(Field::getName).collect(Collectors.toSet());
 
             Map<String, Object> pathSpecMap = getPathSpec(bindings, "pathSpecs");
             //remove blacklisted fields

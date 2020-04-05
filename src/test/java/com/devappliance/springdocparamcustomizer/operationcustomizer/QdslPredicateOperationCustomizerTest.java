@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Mar, 2020
  **/
 
-public class QdslPredicateCustomizerTest extends BaseTest {
+public class QdslPredicateOperationCustomizerTest extends BaseTest {
     @Test
     public void testThatQdslPredicateFieldsShowUpAsQueryParamInDoc() throws Exception {
         mockMvc.perform(get(Constants.DEFAULT_API_DOCS_URL)).andExpect(status().isOk())
